@@ -1,6 +1,8 @@
 [Link](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
 ```java
+//分情况讨论
+
 public class Solution {
     public int search(int[] nums, int target) {
         if (nums==null || nums.length==0) {
@@ -8,12 +10,39 @@ public class Solution {
         }
         
         int start = 0;
-        int end = nums.length() - 1;
-        int mid = start + (end - start) / 2;
+        int end = nums.length - 1;
         
         while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+        
+            if (nums[mid] == target) {
+                return mid;
+            }
             
+            if (nums[start] < nums[mid]) { 
+                //case 1
+               if (nums[start] <= target && target <= nums[mid]) {
+                   end = mid;
+               } else {
+                   start = mid;
+               }
+            } else {
+                //case 2
+                if (nums[end] >= target && target >= nums[mid]) {
+                    start = mid;
+                } else {
+                    end = mid;
+                }
+            }
         }
-       
+        
+        if (nums[start] == target) {
+            return start;
+        }
+        if (nums[end] == target) {
+            return end;
+        }
+        
+        return -1;
     }
 }
