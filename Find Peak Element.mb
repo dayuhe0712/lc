@@ -14,10 +14,6 @@ public class Solution {
                 end = mid;
             }
         }
-        if (nums[start] < nums[end]) {
-            return end;
-        } else {
-            return start;
-        }
+        return Math.min(nums[start], nums[end]);
     }
 }
