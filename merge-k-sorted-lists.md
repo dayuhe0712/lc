@@ -13,7 +13,36 @@
  * }
  */
 public class Solution {
+    private class MyComparator implements Comparator<ListNode> {
+        public int compare(ListNode n1, ListNode n2) {
+            return n1.val - n2.val;
+        }
+    }
+    
     public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
         
+        //初始化PriorityQueue
+        PriorityQueue<ListNode> queue = new PriorityQueue(lists.length, new MyComparator());
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) {
+                queue.offer(lists[i]);
+            }
+        }
+        
+        ListNode dummy = new ListNode(0);
+        ListNode node = dummy;
+        while (!queue.isEmpty()) {
+            ListNode temp = queue.poll();
+            node.next = temp; 
+            temp = temp.next;
+            if (temp.next != null) {
+                queue.offer(temp.next);
+            }
+        }
+        
+        return dummy.next;
     }
 }
