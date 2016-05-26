@@ -20,7 +20,7 @@ public class Solution {
         
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j) == '?') {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?') {
                     match[i][j] = match[i - 1][j - 1];
                 } else if (p.charAt(j - 1) == '*') {
                     match[i][j] = match[i - 1][j] || match[i][j - 1];
