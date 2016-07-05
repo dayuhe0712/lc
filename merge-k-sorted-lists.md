@@ -37,7 +37,7 @@ public class Solution {
         while (!queue.isEmpty()) {
             ListNode temp = queue.poll();
             node.next = temp; 
-            temp = temp.next;
+            node = node.next;
             if (temp.next != null) {
                 queue.offer(temp.next);
             }
