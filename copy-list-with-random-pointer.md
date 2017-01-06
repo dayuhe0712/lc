@@ -30,7 +30,7 @@ public class Solution {
         //copy random pointer
         while (head != null) {
             if (head.random != null) {
-                head.next.random = head.random;
+                head.next.random = head.random.next;
             } else {
                 head.next.random = null;
             }
